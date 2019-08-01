@@ -25,6 +25,10 @@ export class LoginData {
 }
 
 export abstract class IMutation {
+  abstract createUser(input?: InputCreateUser): User | Promise<User>;
+
+  abstract login(input?: InputLoginUser): LoginData | Promise<LoginData>;
+
   abstract createTodo(input: InputTodo): Todo | Promise<Todo>;
 
   abstract updateTodo(id: string, input: InputTodo): Todo | Promise<Todo>;
@@ -34,16 +38,12 @@ export abstract class IMutation {
   abstract markIncompleteTodo(id: string): Todo | Promise<Todo>;
 
   abstract deleteTodo(id: string): boolean | Promise<boolean>;
-
-  abstract createUser(input?: InputCreateUser): User | Promise<User>;
-
-  abstract login(input?: InputLoginUser): LoginData | Promise<LoginData>;
 }
 
 export abstract class IQuery {
-  abstract listTodos(): Todo[] | Promise<Todo[]>;
-
   abstract me(): User | Promise<User>;
+
+  abstract listTodos(): Todo[] | Promise<Todo[]>;
 }
 
 export class Todo {
